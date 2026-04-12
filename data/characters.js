@@ -106,6 +106,7 @@ export const characters = {
         },
 
         custom: {
+          yggdrasilMead: { label: "Yggdrasil Mead", max: 4 },
           stormHammerCharges: { label: "Storm Hammer Charges", max: 5 },
           channelDivinity: { label: "Channel Divinity", max: 2 },
           layOnHands: { label: "Lay on Hands Pool", max: 50, display: "number" },
@@ -259,6 +260,7 @@ export const characters = {
       /* Resource pools */
       resources: {
         custom: {
+          yggdrasilMead: { label: "Yggdrasil Mead", max: 4 },
           rapierCharges: { label: "Rapier Charges", max: 10 }
         }
       }
@@ -416,6 +418,7 @@ Sindri: {
       },
 
       custom: {
+        yggdrasilMead: { label: "Yggdrasil Mead", max: 4 },
         flashOfGenius: { label: "Flash of Genius", max: 3 },
         overrideDirective: { label: "Override Directive", max: 4 }, // PB
         commandProtocol: { label: "Command Protocol", max: null }, // free use
@@ -541,6 +544,251 @@ Sindri: {
       }
     }
   }
+  ,
 
-  /* ===== ADD BARD BELOW USING SAME STRUCTURE ===== */
+  /* ========================================
+     CHIRP — BARD (ELOQUENCE / LOKI RELICS)
+     ======================================== */
+  chirp: {
+
+    /* ---------- IDENTITY ---------- */
+    identity: {
+      id: "chirp",
+      name: "Chirp Lyrestrum",
+      className: "Bard (Eloquence)",
+      level: 10
+    },
+
+    /* ---------- ABILITY SCORES ---------- */
+    abilities: {
+      str: { score: 10, mod: 0 },
+      dex: { score: 16, mod: 3 },
+      con: { score: 14, mod: 2 },
+      int: { score: 14, mod: 2 },
+      wis: { score: 13, mod: 1 },
+      cha: { score: 20, mod: 5 }
+    },
+
+    /* ---------- COMBAT STATS ---------- */
+    combat: {
+      proficiencyBonus: 4,
+      hpMax: 73,
+
+      /* Sheet AC 13 + Cloak of the Shifting Tale */
+      ac: 14,
+      initiative: 3,
+      speed: "30 ft",
+
+      passivePerception: 15,
+      passiveInsight: 13,
+      passiveInvestigation: 14,
+
+      /* Sheet baseline + Lyre of the Silver Tongue */
+      spellAttack: 11,
+      spellSaveDC: 19,
+
+      saves: {
+        str: { bonus: 0, proficient: false },
+        dex: { bonus: 7, proficient: true },
+        con: { bonus: 2, proficient: false },
+        int: { bonus: 2, proficient: false },
+        wis: { bonus: 1, proficient: false },
+        cha: { bonus: 9, proficient: true }
+      },
+
+      skills: {
+        acrobatics: 11,
+        deception: 13,
+        perception: 5,
+        performance: 13,
+        persuasion: 9,
+        sleightOfHand: 7,
+        stealth: 11
+      },
+
+      defenses: {
+        notes: [
+          "Advantage on saving throws against ranged attacks.",
+          "High-value reactions: Shield, Counterspell, Cutting Words, Narrative Deflection, Mask of Many Selves.",
+          "Control and reposition matter more than standing still and trading."
+        ]
+      },
+
+      attacks: {
+        primary: {
+          name: "Vicious Mockery",
+          toHit: null,
+          damage: "Psychic cantrip pressure",
+          rider: "WIS save DC 19; 1d4 psychic and disadvantage on next attack"
+        },
+
+          lyreNote: {
+    name: "Magic Note",
+    toHit: 11,
+    damage: "1d8 + 5 psychic",
+    rider: "Ranged spell attack from Lyre of the Silver Tongue"
+  },
+        melee: {
+          name: "Dagger",
+          toHit: 7,
+          damage: "1d4 + 3 piercing",
+          rider: "Fallback only"
+        }
+
+        
+      },
+
+      resources: {
+        spellSlots: {
+          1: { max: 4 },
+          2: { max: 3 },
+          3: { max: 3 },
+          4: { max: 3 },
+          5: { max: 2 }
+        },
+
+        custom: {
+          yggdrasilMead: { label: "Yggdrasil Mead", max: 4 },
+          bardicInspiration: { label: "Bardic Inspiration (1d10)", max: 5 },
+          lucky: { label: "Lucky", max: 4 },
+          kenkuRecall: { label: "Kenku Recall", max: 4 },
+          universalSpeech: { label: "Universal Speech", max: 1 },
+          maskOfManySelves: { label: "Mask of Many Selves", max: 4 },
+          narrativeDeflection: { label: "Narrative Deflection", max: 4 },
+          grandPerformance: { label: "Grand Performance", max: 1 }
+        }
+      }
+    },
+
+    /* ---------- DASHBOARD (PLAYER VIEW) ---------- */
+    dashboard: {
+
+      defense: [
+        "Shield: reaction +5 AC until start of your next turn.",
+        "Counterspell: stop enemy casting at the source.",
+        "Cutting Words: reaction debuff tool; Cutting Reality adds 2d6 psychic + speed 0.",
+        "Narrative Deflection: reduce damage, then redirect the attack on failed CHA save.",
+        "Mask of Many Selves: reaction flicker imposes disadvantage when targeted by an attack."
+      ],
+
+      actions: {
+        action: [
+          "Vicious Mockery",
+          "Dissonant Whispers",
+          "Fireball",
+          "Spirit Guardians",
+          "Polymorph",
+          "Steel Wind Strike",
+          "Universal Speech",
+          "Grand Performance"
+        ],
+
+        bonus: [
+          "Bardic Inspiration",
+          "Unsettling Words",
+          "Twist the Scene",
+          "Misty Step",
+          "Mass Healing Word"
+        ],
+
+        reaction: [
+          "Shield",
+          "Feather Fall",
+          "Counterspell",
+          "Cutting Words",
+          "Narrative Deflection",
+          "Mask of Many Selves"
+        ],
+
+        passive: [
+          "Silver Tongue",
+          "Unfailing Inspiration",
+          "Words Made Real",
+          "Resonant Command",
+          "Magical Secrets",
+          "Master of Voices"
+        ]
+      },
+
+      activeCards: [
+        {
+          type: "bonus",
+          title: "Bardic Inspiration",
+          body: "Bonus Action. 60 ft. A creature that can see or hear you gains a Bardic Inspiration die (1d10). 5 uses."
+        },
+        {
+          type: "bonus",
+          title: "Unsettling Words",
+          body: "Bonus Action. Expend one use of Bardic Inspiration and choose one creature within 60 ft. Roll your Bardic Inspiration die. The creature subtracts the result from the next saving throw it makes before the start of your next turn. Unsettling Eloquence: the target must also succeed on a CHA save or have disadvantage on its next saving throw."
+        },
+        {
+          type: "passive",
+          title: "Silver Tongue",
+          body: "When you make a Persuasion or Deception check, a d20 roll of 9 or lower counts as a 10."
+        },
+        {
+          type: "passive",
+          title: "Unfailing Inspiration",
+          body: "When a creature uses one of your Bardic Inspiration dice on an ability check, attack roll, or saving throw and the roll still fails, the Bardic Inspiration die is not lost."
+        },
+        {
+          type: "action",
+          title: "Universal Speech",
+          body: "Action. Choose up to 5 creatures within 60 ft. They can magically understand you for 1 hour. 1/LR, or expend a spell slot to use it again."
+        },
+        {
+          type: "reaction",
+          title: "Cutting Words",
+          body: "Reaction. Expend a use of Bardic Inspiration to undercut a creature’s roll. Cutting Reality: when you use Cutting Words, the target also takes 2d6 psychic damage and its speed becomes 0 until the end of the turn."
+        },
+        {
+          type: "reaction",
+          title: "Narrative Deflection",
+          body: "Reaction when hit by an attack. Reduce damage by 1d10 + CHA mod + PB, then force the attacker to make a CHA save. On a failure, they must choose a new target within range. 4 uses."
+        },
+        {
+          type: "reaction",
+          title: "Mask of Many Selves",
+          body: "Disguise Self at will. Reaction when targeted by an attack: briefly flicker into another form to impose disadvantage. 4 uses."
+        },
+        {
+          type: "bonus",
+          title: "Twist the Scene",
+          body: "Bonus Action. Choose one creature within 30 ft. Swap places with them; unwilling target gets a CHA save to negate."
+        },
+        {
+          type: "passive",
+          title: "Words Made Real",
+          body: "When you cast an enchantment or illusion spell, choose one affected target. It takes psychic damage equal to your CHA modifier + PB."
+        },
+        {
+          type: "passive",
+          title: "Resonant Command",
+          body: "When a creature fails a saving throw against one of your spells, you can force it to move up to its speed in a direction you choose or fall prone."
+        },
+        {
+          type: "action",
+          title: "Grand Performance",
+          body: "1/LR, Action. For 1 minute, enemies of your choice within 30 ft. have disadvantage on all saves vs your spells, allies gain advantage on attack rolls and saving throws, and creatures that fail a save are also charmed until the end of their next turn."
+        },
+        {
+          type: "passive",
+          title: "Master of Voices",
+          body: "Perfectly mimic any voice you’ve ever heard and any sound heard within the last 24 hours. Advantage on Deception and Performance checks."
+        }
+      ],
+
+      unlocks: {
+        2: [
+          "Your bonus action economy is crowded: Bardic Inspiration, Unsettling Words, Twist the Scene, Misty Step, and Mass Healing Word all compete."
+        ],
+        3: [
+          "Your reactions are premium: Shield, Counterspell, Cutting Words, Narrative Deflection, and Mask of Many Selves all demand timing discipline."
+        ],
+        4: [
+          "Your strongest turns are control turns: failed saves, forced movement, prone, charm pressure, and battlefield disruption."
+        ]
+      }
+    }
+  }
 };
