@@ -56,11 +56,7 @@ The layout is designed around how players think during combat:
 Each character has a focused combat view tailored to their:
 
 * core stats
-<<<<<<< HEAD
-* primary attacks
-=======
 * Attack Options
->>>>>>> dev
 * defensive tools
 * active abilities
 
@@ -98,11 +94,6 @@ Designed for fast use on mobile without breaking flow.
 
 Track key class resources and limited-use abilities without digging through sheets.
 
-<<<<<<< HEAD
----
-
-### Primary Attacks Panel
-=======
 Resources are visually grouped to improve readability:
 
 - Yggdrasil Mead (top priority)
@@ -131,7 +122,6 @@ Built for:
 
 
 ### ### Attack Options
->>>>>>> dev
 
 Quick access to:
 
@@ -141,11 +131,7 @@ Quick access to:
 
 ---
 
-<<<<<<< HEAD
-### Defense Strip
-=======
 ### Defense & Reactions
->>>>>>> dev
 
 Highlights survivability tools such as:
 
