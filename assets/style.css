@@ -266,6 +266,42 @@ body {
   box-shadow: 0 0 8px rgba(103, 165, 255, 0.35);
 }
 
+.common-actions-panel {
+  opacity: 0.92;
+}
+
+.common-actions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.common-action-btn {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  text-align: center;
+}
+
+.common-action-btn:hover {
+  border-color: var(--gold);
+  background: rgba(215, 179, 106, 0.08);
+}
+
+.common-action-btn.selected {
+  border-color: var(--blue);
+  background: rgba(103, 165, 255, 0.14);
+  box-shadow: 0 0 8px rgba(103, 165, 255, 0.35);
+}
+
+.reaction-strip {
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 /* =========================
    TAGS
    ========================= */
@@ -317,6 +353,20 @@ body {
 
 .pip.filled {
   background: var(--gold);
+}
+
+.resource-divider {
+  height: 1px;
+  margin: 20px 0 14px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,0.10),
+    transparent
+  );
+}
+.card + .card {
+  margin-top: 8px;
 }
 
 /* =========================

@@ -50,6 +50,40 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function getHalfHealAmount(characterId) {
+  const hpMax = characters[characterId]?.combat?.hpMax || 0;
+  return Math.floor(hpMax / 2);
+}
+
+function restoreSpellSlotsToMax(characterId) {
+  const spellSlots = characters[characterId].combat.resources?.spellSlots || {};
+
+  for (const [level, slotData] of Object.entries(spellSlots)) {
+    state.resources[characterId].spellSlots[level] = slotData.max;
+  }
+}
+
+function restoreCustomResourcesToMax(characterId, options = {}) {
+  const { excludeKeys = [] } = options;
+  const custom = characters[characterId].combat.resources?.custom || {};
+
+  for (const [key, resource] of Object.entries(custom)) {
+    if (excludeKeys.includes(key)) continue;
+    state.resources[characterId].custom[key] = safeResourceMax(resource);
+  }
+}
+
+function spendYggdrasilMead(characterId) {
+  const current = state.resources[characterId]?.custom?.yggdrasilMead;
+
+  if (current === null || current === undefined || current <= 0) {
+    return false;
+  }
+
+  state.resources[characterId].custom.yggdrasilMead = current - 1;
+  return true;
+}
+
 /* ---------- INITIALIZE STATE ---------- */
 
 function buildInitialState() {
@@ -68,6 +102,7 @@ function buildInitialState() {
     custom: {}
   };
   initial.selectedActions[id] = {
+    common: null,
     action: null,
     bonus: null,
     reaction: null,
@@ -274,19 +309,21 @@ function render() {
           </div>
         </div>
 
-        <div class="panel">
-          <div class="section-title">Primary Attack</div>
-          ${renderAttack(character)}
-        </div>
-
-        <div class="panel">
-          <div class="section-title">Defense Strip</div>
+                <div class="panel">
+          <div class="section-title">Defense & Reactions</div>
           ${renderDefense(character)}
         </div>
+
+        ${renderCommonActions(characterId)}
 
         <div class="panel">
           <div class="section-title">Actions</div>
           ${renderActions(characterId, character)}
+        </div>
+
+                <div class="panel">
+          <div class="section-title">Attack Options</div>
+          ${renderAttack(character)}
         </div>
       </div>
 
@@ -345,7 +382,10 @@ function renderAttack(character) {
       ([key, attack]) => `
         <div class="attack-box" data-attack-key="${escapeHtml(key)}" style="margin-bottom: 10px;">
           <div class="stat-label">${escapeHtml(attack.name)}</div>
-          <div class="attack-line">To Hit: ${escapeHtml(formatMod(attack.toHit))}</div>
+          ${attack.toHit !== null && attack.toHit !== undefined
+  ? `<div class="attack-line">To Hit: ${escapeHtml(formatMod(attack.toHit))}</div>`
+  : `<div class="attack-line">Save: ${escapeHtml(attack.rider.includes("DC") ? attack.rider.split(";")[0] : "See rider")}</div>`
+}
           <div class="small"><strong>Damage:</strong> ${escapeHtml(attack.damage)}</div>
           <div class="small"><strong>Rider:</strong> ${escapeHtml(attack.rider)}</div>
         </div>
@@ -373,6 +413,54 @@ function renderActions(characterId, character) {
       ${renderActionBlock("Bonus Action", "bonus", bonus, characterId)}
       ${renderActionBlock("Reaction", "reaction", reaction, characterId)}
       ${renderActionBlock("Passive", "passive", passive, characterId)}
+    </div>
+  `;
+}
+
+function renderCommonActions(characterId) {
+  const items = [
+    "Attack",
+    "Grapple",
+    "Dash",
+    "Disengage",
+    "Dodge",
+    "Help",
+    "Hide",
+    "Ready",
+    "Search",
+    "Use an Object"
+  ];
+
+  const selected = state.selectedActions[characterId]?.common;
+
+  return `
+    <div class="panel common-actions-panel">
+      <div class="section-title">Common Combat Actions</div>
+
+      <div class="common-actions-grid">
+        ${items
+          .map((action, index) => {
+            const key = `common-${index}`;
+            const isSelected = selected === key ? "selected" : "";
+
+            return `
+              <button
+                class="action-btn common-action-btn ${isSelected}"
+                type="button"
+                data-character="${escapeHtml(characterId)}"
+                data-type="common"
+                data-key="${escapeHtml(key)}"
+              >
+                ${escapeHtml(action)}
+              </button>
+            `;
+          })
+          .join("")}
+      </div>
+
+      <div class="reaction-strip">
+        ⚡ Reaction Reminder: Opportunity Attack
+      </div>
     </div>
   `;
 }
@@ -441,7 +529,43 @@ function renderResources(characterId, character) {
     })
     .join("");
 
+  const meadResource = custom.yggdrasilMead;
+  const meadHtml = meadResource
+    ? `
+      <div class="card" style="margin-bottom: 10px;">
+        <div class="stat-label">${escapeHtml(meadResource.label)}</div>
+        <div class="small" style="margin-bottom: 8px;">
+          Valhalla refresh item. Choose one effect per use.
+        </div>
+        ${renderPips(
+          characterId,
+          "custom",
+          "yggdrasilMead",
+          safeResourceMax(meadResource),
+          state.resources[characterId].custom.yggdrasilMead
+        )}
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+          <button
+            class="btn green yggdrasil-half-heal-btn"
+            type="button"
+            data-character="${escapeHtml(characterId)}"
+          >
+            Half Heal (${getHalfHealAmount(characterId)} HP)
+          </button>
+          <button
+            class="btn blue yggdrasil-rest-btn"
+            type="button"
+            data-character="${escapeHtml(characterId)}"
+          >
+            Pseudo Long Rest
+          </button>
+        </div>
+      </div>
+    `
+    : "";
+
   const customHtml = Object.entries(custom)
+    .filter(([key]) => key !== "yggdrasilMead")
     .map(([key, resource]) => {
       const max = safeResourceMax(resource);
       const remaining = state.resources[characterId].custom[key];
@@ -505,7 +629,13 @@ function renderResources(characterId, character) {
     })
     .join("");
 
-  return spellSlotHtml + customHtml;
+  return `
+  ${meadHtml}
+
+  ${spellSlotHtml ? `<div class="resource-divider"></div>${spellSlotHtml}` : ""}
+
+  ${customHtml ? `<div class="resource-divider"></div>${customHtml}` : ""}
+`;
 }
 
 function renderPips(characterId, bucket, key, max, remaining) {
@@ -646,27 +776,51 @@ function bindEvents() {
     });
   }
 
-  if (resetBtn) {
+    if (resetBtn) {
     resetBtn.addEventListener("click", () => {
       const id = state.selectedCharacterId;
       state.currentHp[id] = characters[id].combat.hpMax;
 
-      const spellSlots = characters[id].combat.resources?.spellSlots || {};
-      const custom = characters[id].combat.resources?.custom || {};
-
-      for (const [level, slotData] of Object.entries(spellSlots)) {
-        state.resources[id].spellSlots[level] = slotData.max;
-      }
-
-      for (const [key, resource] of Object.entries(custom)) {
-        state.resources[id].custom[key] = safeResourceMax(resource);
-      }
+      restoreSpellSlotsToMax(id);
+      restoreCustomResourcesToMax(id);
 
       saveState();
       render();
     });
-    
   }
+    document.querySelectorAll(".yggdrasil-half-heal-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const characterId = e.currentTarget.dataset.character;
+      if (!spendYggdrasilMead(characterId)) return;
+
+      const healAmount = getHalfHealAmount(characterId);
+      const maxHp = characters[characterId].combat.hpMax;
+
+      state.currentHp[characterId] = Math.min(
+        maxHp,
+        state.currentHp[characterId] + healAmount
+      );
+
+      saveState();
+      render();
+    });
+  });
+
+  document.querySelectorAll(".yggdrasil-rest-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const characterId = e.currentTarget.dataset.character;
+      if (!spendYggdrasilMead(characterId)) return;
+
+      restoreSpellSlotsToMax(characterId);
+      restoreCustomResourcesToMax(characterId, {
+        excludeKeys: ["yggdrasilMead"]
+      });
+
+      saveState();
+      render();
+    });
+  });
+
 
   document.querySelectorAll(".action-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {

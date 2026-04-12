@@ -6,6 +6,19 @@ Built for fast-paced tabletop play, this tool gives players a clear, at-a-glance
 
 ---
 
+<<<<<<< HEAD
+=======
+## 🚀 Quick Start
+
+Launch the dashboard instantly:
+
+👉 **https://questforgegamespnw.github.io/questforge-combat-dashboard/**
+
+_No installation required — mobile friendly_
+
+---
+
+>>>>>>> dev
 ## 🎯 Purpose
 
 Combat often slows down when players:
@@ -21,13 +34,31 @@ The Questforge Combat Dashboard solves this by surfacing **relevant actions, sta
 ## 🧠 Core Idea
 
 This is not a character sheet.
+<<<<<<< HEAD
 
 This is a **decision accelerator**.
 
+=======
+This is a **decision-first interface**.
+>>>>>>> dev
 It helps players answer one question, fast:
 
 > “What can I do right now?”
 
+<<<<<<< HEAD
+=======
+The layout is designed around how players think during combat:
+
+1. Defense & Reactions
+2. Common Actions
+3. Class Actions
+4. Attack Options
+
+
+
+
+
+>>>>>>> dev
 ---
 
 ## ⚙️ Feature Overview
@@ -37,7 +68,11 @@ It helps players answer one question, fast:
 Each character has a focused combat view tailored to their:
 
 * core stats
+<<<<<<< HEAD
 * primary attacks
+=======
+* Attack Options
+>>>>>>> dev
 * defensive tools
 * active abilities
 
@@ -75,9 +110,40 @@ Designed for fast use on mobile without breaking flow.
 
 Track key class resources and limited-use abilities without digging through sheets.
 
+<<<<<<< HEAD
 ---
 
 ### Primary Attacks Panel
+=======
+Resources are visually grouped to improve readability:
+
+- Yggdrasil Mead (top priority)
+- Spell slots
+- Class resources
+
+Subtle spacing and separators help players quickly scan and manage resources without additional labels.
+
+---
+
+### 🍷 Yggdrasil Mead System
+
+A campaign-specific consumable designed for fast recovery between encounters.
+
+Each character has 4 uses per Valhalla cycle:
+
+- **Half Heal** → restores half max HP (auto-calculated)
+- **Pseudo Long Rest** → restores all resources except Mead
+
+Built for:
+- zero math
+- one-click usage
+- fast table recovery between fights
+
+---
+
+
+### ### Attack Options
+>>>>>>> dev
 
 Quick access to:
 
@@ -87,7 +153,11 @@ Quick access to:
 
 ---
 
+<<<<<<< HEAD
 ### Defense Strip
+=======
+### Defense & Reactions
+>>>>>>> dev
 
 Highlights survivability tools such as:
 
@@ -187,16 +257,30 @@ questforge-combat-dashboard/
 ├── js/
 │   └── app.js
 │
+<<<<<<< HEAD
 └── index.html
+=======
+├── changelog.md
+├── READEME.md
+├── LICENSE
+└── index.html
+
+>>>>>>> dev
 ```
 
 ---
 
 ## 🚀 Version
 
+<<<<<<< HEAD
 Current version: **v0.1.0**
 
 This is an early functional release focused on establishing the core dashboard experience.
+=======
+Current version: **v1.0.0**
+
+This is the now a complete, usable system with intentional UX after being initially developed and released at 0.1.0 
+>>>>>>> dev
 
 ---
 
