@@ -6,8 +6,6 @@ Built for fast-paced tabletop play, this tool gives players a clear, at-a-glance
 
 ---
 
-<<<<<<< HEAD
-=======
 ## 🚀 Quick Start
 
 Launch the dashboard instantly:
@@ -18,7 +16,6 @@ _No installation required — mobile friendly_
 
 ---
 
->>>>>>> dev
 ## 🎯 Purpose
 
 Combat often slows down when players:
@@ -34,19 +31,11 @@ The Questforge Combat Dashboard solves this by surfacing **relevant actions, sta
 ## 🧠 Core Idea
 
 This is not a character sheet.
-<<<<<<< HEAD
-
-This is a **decision accelerator**.
-
-=======
 This is a **decision-first interface**.
->>>>>>> dev
 It helps players answer one question, fast:
 
 > “What can I do right now?”
 
-<<<<<<< HEAD
-=======
 The layout is designed around how players think during combat:
 
 1. Defense & Reactions
@@ -58,7 +47,6 @@ The layout is designed around how players think during combat:
 
 
 
->>>>>>> dev
 ---
 
 ## ⚙️ Feature Overview
@@ -257,30 +245,20 @@ questforge-combat-dashboard/
 ├── js/
 │   └── app.js
 │
-<<<<<<< HEAD
-└── index.html
-=======
 ├── changelog.md
 ├── READEME.md
 ├── LICENSE
 └── index.html
 
->>>>>>> dev
 ```
 
 ---
 
 ## 🚀 Version
 
-<<<<<<< HEAD
-Current version: **v0.1.0**
-
-This is an early functional release focused on establishing the core dashboard experience.
-=======
 Current version: **v1.0.0**
 
 This is the now a complete, usable system with intentional UX after being initially developed and released at 0.1.0 
->>>>>>> dev
 
 ---
 
