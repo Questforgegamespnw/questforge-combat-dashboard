@@ -790,5 +790,322 @@ Sindri: {
         ]
       }
     }
+  },
+
+/* =========================
+   QUESTFORGE EXTRA CHARACTER DATA
+   Add these into characters.js inside export const characters = { ... }
+   ========================= */
+
+djinn: {
+    identity: {
+      id: "djinn",
+      name: "Genasi Djinn",
+      className: "Bard 7 / Monk 3",
+      level: 10
+    },
+
+    abilities: {
+      str: { score: 10, mod: 0 },
+      dex: { score: 16, mod: 3 },
+      con: { score: 12, mod: 1 },
+      int: { score: 10, mod: 0 },
+      wis: { score: 18, mod: 4 },
+      cha: { score: 18, mod: 4 }
+    },
+
+    combat: {
+      proficiencyBonus: 4,
+      hpMax: 63,
+      ac: 17,
+      initiative: 3,
+      speed: "40 ft",
+
+      passivePerception: 18,
+      passiveInsight: 22,
+      passiveInvestigation: 12,
+
+      spellAttack: 8,
+      spellSaveDC: 16,
+
+      saves: {
+        str: { bonus: 0, proficient: false },
+        dex: { bonus: 7, proficient: true },
+        con: { bonus: 1, proficient: false },
+        int: { bonus: 0, proficient: false },
+        wis: { bonus: 4, proficient: false },
+        cha: { bonus: 8, proficient: true }
+      },
+
+      skills: {
+        acrobatics: 5,
+        animalHandling: 6,
+        arcana: 4,
+        athletics: 2,
+        deception: 12,
+        history: 4,
+        insight: 12,
+        intimidation: 8,
+        investigation: 2,
+        medicine: 6,
+        nature: 2,
+        perception: 8,
+        performance: 6,
+        persuasion: 6,
+        sleightOfHand: 7,
+        stealth: 7,
+        survival: 6
+      },
+
+      defenses: {
+        notes: [
+          "Unarmored Defense AC 17.",
+          "Unending Breath: can hold breath indefinitely while not incapacitated.",
+          "Deflect Attacks: reduce B/P/S damage by 1d10 + 6."
+        ]
+      },
+
+      attacks: {
+        dagger: {
+          name: "Dagger",
+          toHit: 7,
+          damage: "1d6 + 3 piercing",
+          rider: "Finesse, Light, Thrown 20/60, Nick"
+        },
+        starryWisp: {
+          name: "Starry Wisp",
+          toHit: 8,
+          damage: "2d8 radiant",
+          rider: "Ranged spell attack, 60 ft."
+        },
+        unarmed: {
+          name: "Unarmed Strike",
+          toHit: 7,
+          damage: "1d6 + 3 bludgeoning",
+          rider: "Monk Martial Arts"
+        },
+        astralArms: {
+          name: "Arms of the Astral Self",
+          toHit: 8,
+          damage: "1d6 + 4 force",
+          rider: "Uses WIS; reach increases by 5 ft."
+        },
+        viciousMockery: {
+          name: "Vicious Mockery",
+          toHit: null,
+          damage: "Psychic cantrip pressure",
+          rider: "WIS save DC 16"
+        }
+      },
+
+      resources: {
+        spellSlots: {
+          1: { max: 4 },
+          2: { max: 3 },
+          3: { max: 3 },
+          4: { max: 1 }
+        },
+        custom: {
+          yggdrasilMead: { label: "Yggdrasil Mead", max: 4 },
+          bardicInspiration: { label: "Bardic Inspiration (1d6)", max: 4 },
+          focusPoints: { label: "Focus Points", max: 3 },
+          uncannyMetabolism: { label: "Uncanny Metabolism", max: 1 },
+          mingleWithTheWind: { label: "Mingle with the Wind / Levitate", max: 1 }
+        }
+      }
+    },
+
+    dashboard: {
+      defense: [
+        "Deflect Attacks reduces B/P/S damage by 1d10 + 6.",
+        "Patient Defense can Disengage as bonus action, or spend Focus to Disengage + Dodge.",
+        "Astral Arms lets you fight safely with reach and WIS attacks.",
+        "High Insight and Deception make social reads extremely strong."
+      ],
+
+      actions: {
+        action: ["Attack", "Starry Wisp", "Vicious Mockery", "Cast Spell", "Astral Arms Attack"],
+        bonus: ["Bardic Inspiration", "Summon Astral Arms", "Flurry of Blows", "Patient Defense", "Step of the Wind"],
+        reaction: ["Deflect Attacks", "Cutting Words", "Countercharm"],
+        passive: ["Jack of All Trades", "Unarmored Defense", "Unarmored Movement", "Martial Arts"]
+      },
+
+      activeCards: [
+        {
+          type: "bonus",
+          title: "Summon Astral Arms",
+          body: "Spend 1 Focus. Creatures of choice within 10 ft make DEX save DC 16 or take 2d4 force. Arms last 10 minutes."
+        },
+        {
+          type: "reaction",
+          title: "Deflect Attacks",
+          body: "When hit by B/P/S damage, reduce damage by 1d10 + 6. If reduced to 0, spend 1 Focus to redirect."
+        },
+        {
+          type: "bonus",
+          title: "Bardic Inspiration",
+          body: "Bonus Action. Give one creature within 60 ft a 1d6 Bardic Inspiration die."
+        },
+        {
+          type: "reaction",
+          title: "Cutting Words",
+          body: "Spend Bardic Inspiration to subtract 1d6 from a creature’s attack roll, ability check, or damage roll."
+        }
+      ]
+    }
+  },
+
+  plunder: {
+    identity: {
+      id: "plunder",
+      name: "Plunder",
+      className: "Fighter 3 / Artificer 7",
+      level: 10
+    },
+
+    abilities: {
+      str: { score: 14, mod: 2 },
+      dex: { score: 16, mod: 3 },
+      con: { score: 18, mod: 4 },
+      int: { score: 18, mod: 4 },
+      wis: { score: 10, mod: 0 },
+      cha: { score: 10, mod: 0 }
+    },
+
+    combat: {
+      proficiencyBonus: 4,
+      hpMax: 97,
+      ac: 24,
+      initiative: 3,
+      speed: "20 ft",
+
+      passivePerception: 14,
+      passiveInsight: 10,
+      passiveInvestigation: 14,
+
+      spellAttack: 8,
+      spellSaveDC: 16,
+
+      saves: {
+        str: { bonus: 6, proficient: true },
+        dex: { bonus: 3, proficient: false },
+        con: { bonus: 8, proficient: true },
+        int: { bonus: 4, proficient: false },
+        wis: { bonus: 0, proficient: false },
+        cha: { bonus: 0, proficient: false }
+      },
+
+      skills: {
+        animalHandling: 4,
+        athletics: 6,
+        arcana: 4,
+        history: 4,
+        intimidation: 4,
+        investigation: 4,
+        nature: 8,
+        perception: 4,
+        religion: 4,
+        sleightOfHand: 3,
+        stealth: 3
+      },
+
+      defenses: {
+        resistances: ["Poison"],
+        immunities: ["Disease", "Magical Sleep"],
+        notes: [
+          "Advantage against being poisoned.",
+          "Integrated Protection included in AC.",
+          "Defense Fighting Style included in AC."
+        ]
+      },
+
+      attacks: {
+        armblade: {
+          name: "Armblade Javelin",
+          toHit: 8,
+          damage: "1d6 + 4 piercing",
+          rider: "Thrown 30/120; Booming Blade adds thunder rider when used."
+        },
+        longsword: {
+          name: "Longsword +1",
+          toHit: 9,
+          damage: "1d8 + 5 slashing",
+          rider: "Versatile; Booming Blade adds thunder rider when used."
+        },
+        unarmed: {
+          name: "Unarmed Strike",
+          toHit: 6,
+          damage: "3 bludgeoning",
+          rider: "Fallback only."
+        },
+        boomingBlade: {
+          name: "Booming Blade",
+          toHit: 8,
+          damage: "Weapon damage + 1d8 thunder",
+          rider: "If target willingly moves before next turn, takes 2d8 thunder."
+        }
+      },
+
+      resources: {
+        spellSlots: {
+          1: { max: 4 },
+          2: { max: 3 }
+        },
+        custom: {
+          yggdrasilMead: { label: "Yggdrasil Mead", max: 4 },
+          flashOfGenius: { label: "Flash of Genius", max: 4 },
+          secondWind: { label: "Second Wind", max: 1 },
+          actionSurge: { label: "Action Surge", max: 1 },
+          infuseItem: { label: "Infused Items", max: 3 },
+          magicalTinkering: { label: "Magical Tinkering", max: 4 },
+          steelDefenderHP: { label: "Steel Defender HP", max: 41, display: "number" }
+        }
+      }
+    },
+
+    dashboard: {
+      defense: [
+        "AC 24 makes you the hardest target on the board.",
+        "Shield spell can spike AC even higher as a reaction.",
+        "Flash of Genius adds +4 to a save/check within 30 ft.",
+        "Poison resistance, poison-save advantage, disease immunity, and no magical sleep."
+      ],
+
+      actions: {
+        action: ["Attack", "Booming Blade", "Cast Spell", "Infuse Item", "Steel Defender Command"],
+        bonus: ["Second Wind", "Command Steel Defender", "Weapon Bond Summon"],
+        reaction: ["Shield", "Absorb Elements", "Flash of Genius", "Opportunity Attack"],
+        passive: ["Extra Attack", "Battle Ready", "Tool Expertise", "Integrated Protection"]
+      },
+
+      activeCards: [
+        {
+          type: "reaction",
+          title: "Shield",
+          body: "Reaction. +5 AC until start of your next turn."
+        },
+        {
+          type: "reaction",
+          title: "Flash of Genius",
+          body: "Reaction. Add +4 to your or an ally’s ability check or saving throw within 30 ft. 4/LR."
+        },
+        {
+          type: "bonus",
+          title: "Second Wind",
+          body: "Bonus Action. Regain 1d10 + 3 HP. 1/SR."
+        },
+        {
+          type: "special",
+          title: "Action Surge",
+          body: "Take one additional action on your turn. 1/SR."
+        },
+        {
+          type: "bonus",
+          title: "Command Steel Defender",
+          body: "Steel Defender acts after you. If not commanded, it Dodges. HP 41, AC 15, Speed 40 ft."
+        }
+      ]
+    }
   }
+
 };
