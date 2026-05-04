@@ -343,6 +343,9 @@ Sindri: {
     level: 10
   },
 
+  companionIds: ["sindriStoneBrawler"],
+
+
   /* ---------- ABILITY SCORES ---------- */
   abilities: {
     str: { score: 15, mod: 2 },

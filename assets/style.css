@@ -18,7 +18,7 @@
   --purple: #b38cff;
 
   --radius: 16px;
-  --shadow: 0 8px 24px rgba(0,0,0,0.35);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 /* =========================
@@ -120,8 +120,8 @@ body {
 .hp-main {
   padding: 14px;
   border-radius: var(--radius);
-  border: 1px solid rgba(207,91,91,0.3);
-  background: rgba(207,91,91,0.08);
+  border: 1px solid rgba(207, 91, 91, 0.3);
+  background: rgba(207, 91, 91, 0.08);
 }
 
 .hp-current {
@@ -161,9 +161,17 @@ body {
   filter: brightness(1.1);
 }
 
-.btn.red { border-color: var(--red); }
-.btn.green { border-color: var(--green); }
-.btn.blue { border-color: var(--blue); }
+.btn.red {
+  border-color: var(--red);
+}
+
+.btn.green {
+  border-color: var(--green);
+}
+
+.btn.blue {
+  border-color: var(--blue);
+}
 
 /* =========================
    STATS
@@ -209,8 +217,8 @@ body {
    ========================= */
 
 .attack-box {
-  border: 1px solid rgba(215,179,106,0.3);
-  background: rgba(215,179,106,0.08);
+  border: 1px solid rgba(215, 179, 106, 0.3);
+  background: rgba(215, 179, 106, 0.08);
   border-radius: var(--radius);
   padding: 12px;
 }
@@ -315,11 +323,25 @@ body {
   margin-bottom: 6px;
 }
 
-.tag.action { border-color: var(--red); }
-.tag.bonus { border-color: var(--blue); }
-.tag.reaction { border-color: var(--purple); }
-.tag.passive { border-color: var(--green); }
-.tag.locked { border-color: var(--gold); }
+.tag.action {
+  border-color: var(--red);
+}
+
+.tag.bonus {
+  border-color: var(--blue);
+}
+
+.tag.reaction {
+  border-color: var(--purple);
+}
+
+.tag.passive {
+  border-color: var(--green);
+}
+
+.tag.locked {
+  border-color: var(--gold);
+}
 
 /* =========================
    CARDS
@@ -358,14 +380,13 @@ body {
 .resource-divider {
   height: 1px;
   margin: 20px 0 14px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255,255,255,0.10),
-    transparent
-  );
+  background: linear-gradient(to right,
+      transparent,
+      rgba(255, 255, 255, 0.10),
+      transparent);
 }
-.card + .card {
+
+.card+.card {
   margin-top: 8px;
 }
 
@@ -413,4 +434,183 @@ body {
   .hp-box {
     grid-template-columns: 1fr;
   }
+}
+
+/* =========================
+   V1.1 UTILITY LAYER
+   ========================= */
+
+.picker-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.picker-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.view-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.view-tab {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.view-tab:hover {
+  border-color: var(--gold);
+}
+
+.view-tab.selected {
+  border-color: var(--blue);
+  background: rgba(103, 165, 255, 0.14);
+  box-shadow: 0 0 8px rgba(103, 165, 255, 0.30);
+}
+
+.utility-grid {
+  align-items: start;
+}
+
+.skill-groups {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.skill-group-card {
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  border-radius: var(--radius);
+  padding: 10px;
+}
+
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.skill-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.skill-row strong {
+  color: var(--text);
+}
+
+.dice-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dice-mode-row,
+.dice-controls-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.dice-mode-btn,
+.dice-btn {
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.dice-mode-btn:hover,
+.dice-btn:hover {
+  border-color: var(--gold);
+}
+
+.dice-mode-btn.selected {
+  border-color: var(--blue);
+  background: rgba(103, 165, 255, 0.14);
+}
+
+.dice-modifier-input {
+  width: 88px;
+}
+
+.dice-button-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.dice-btn {
+  min-height: 44px;
+  font-size: 1rem;
+}
+
+.dice-result-card {
+  border: 1px solid rgba(215, 179, 106, 0.3);
+  background: rgba(215, 179, 106, 0.08);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.dice-result-main {
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 860px) {
+  .skill-groups {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .picker-row,
+  .picker-wrap,
+  .picker-wrap select {
+    width: 100%;
+  }
+
+  .dice-button-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.skill-subhead {
+  margin-top: 10px;
+  margin-bottom: 4px;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.skill-row.trained {
+  border-left: 3px solid var(--gold);
+  padding-left: 8px;
 }
