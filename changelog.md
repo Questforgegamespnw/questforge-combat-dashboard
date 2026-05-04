@@ -1,4 +1,51 @@
 # Changelog
+## [1.1.0] - 2026-05-03
+
+### Added
+- Campaign selector that replaces the first-run character prompt
+- Campaign roster filtering for the character picker
+- Campaign feature toggles for:
+  - World State
+  - Yggdrasil Mead
+  - Custom resources
+  - Dice roller
+  - Skill groups
+- Skills & Dice view with grouped skill batches organized by ability score
+  - Displays both proficient and base ability values for all skills
+- Simple standalone dice roller with:
+  - d4, d6, d8, d10, d12, d20
+  - Normal / Advantage / Disadvantage modes
+  - Manual modifier input
+
+### Companion System
+- Support for character-linked companions (pets, summons, constructs)
+- Companion data separated into dedicated `companions.js` file
+- Multiple preset builds supported per character
+- Companion stat card including:
+  - AC, HP, Speed
+  - Attack info
+  - Traits and notes
+- Dedicated companion HP tracker:
+  - Damage / Heal / Reset controls
+  - Persistent state (saved in localStorage)
+  - Mirrors player HP workflow for fast use
+
+### Changed
+- First-run setup now asks which campaign the user is playing instead of which character they are
+- Character selection is now scoped to campaign roster
+- World State and campaign-specific systems can be hidden per campaign
+- Combat layout updated to place companion cards directly under Attack Options for better flow
+
+### Improved
+- Skill lookup speed during play by removing need to reference character sheets
+- Mobile usability and scan clarity for utility panels
+- Reduced app-switching during play (dice + skills + companion info now in one place)
+
+### Notes
+- Dice rolling is intentionally not connected to character math, attack cards, saves, or resources
+- Companion system is intentionally decoupled from external builders (Corewright) to maintain speed and reliability
+- Dashboard remains decision-first and avoids becoming a full character sheet or automation engine
+
 ## [1.0.0] - 2026-04-12
 
 ### Added

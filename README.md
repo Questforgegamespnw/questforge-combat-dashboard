@@ -51,6 +51,19 @@ The layout is designed around how players think during combat:
 
 ## ⚙️ Feature Overview
 
+### Campaign Selection
+
+The dashboard can be scoped by campaign so each table only sees the relevant roster and optional systems.
+
+Campaign settings can toggle:
+
+* World State
+* Yggdrasil Mead
+* Custom resources
+* Dice roller
+* Grouped skill batches
+
+
 ### Player-Specific Dashboard
 
 Each character has a focused combat view tailored to their:
@@ -149,6 +162,41 @@ Surfaces class features and special actions so they are not buried or forgotten.
 
 ---
 
+### Skills & Dice View
+
+A secondary utility view provides fast access to commonly requested skill bonuses grouped by table-use category.
+
+Includes a simple standalone dice roller with:
+
+* d4, d6, d8, d10, d12, d20
+* Normal / Advantage / Disadvantage modes
+* Manual modifier input
+
+The dice roller intentionally does not connect to character math or automate attack rolls.
+
+---
+
+---
+
+### Companion / Pet Support
+
+Characters can include a lightweight companion (pet, summon, or construct) directly within the dashboard.
+
+Features include:
+
+- Quick-reference stat block (AC, HP, Speed, attacks)
+- Traits and notes for in-combat reminders
+- Dedicated HP tracker with:
+  - Damage / Heal / Reset controls
+  - Persistent tracking between refreshes
+
+Designed to eliminate the need to switch to external tools (builder pages, PDFs, or notes) during combat.
+
+Supports multiple preset companion builds per character.
+
+---
+
+
 ### General Actions Panel
 
 Includes common combat actions such as:
@@ -207,7 +255,6 @@ Works best in:
 This tool intentionally does **not** include:
 
 * Full character sheet replacement
-* Dice rolling
 * Combat automation
 * Full inventory or currency tracking
 
@@ -224,6 +271,7 @@ questforge-combat-dashboard/
 │   └── style.css
 │
 ├── data/
+│   ├── campaigns.js
 │   ├── characters.js
 │   ├── dashboard-data.js
 │   └── worldstate.js
@@ -242,7 +290,7 @@ questforge-combat-dashboard/
 
 ## 🚀 Version
 
-Current version: **v1.0.0**
+Current version: **v1.1.0**
 
 This is the now a complete, usable system with intentional UX after being initially developed and released at 0.1.0 
 
@@ -252,9 +300,9 @@ This is the now a complete, usable system with intentional UX after being initia
 
 ### Near-Term
 
-* Expanded common action reminders
+* Continued mobile layout refinement
 * Improved action type labeling (Action / Bonus / Reaction)
-* Additional resource tracking support
+* Optional campaign data cleanup and individual character files
 * UI clarity improvements
 
 ### Future Considerations
